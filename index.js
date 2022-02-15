@@ -6,14 +6,26 @@ const { fifaData } = require('./fifa.js')
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
 //(a) Home Team name for 2014 world cup final
+const homeTeam2014 = fifaData.filter(game => game.Year === 2014 && game.Stage === 'Final')[0]['Home Team Name'];
+console.log('Task 1 : Home Team Name 2014', homeTeam2014);
 
 //(b) Away Team name for 2014 world cup final
+const awayTeam2014 = fifaData.filter(game => game.Year === 2014 && game.Stage === 'Final')[0]['Away Team Name'];
+console.log('Task 1 Away Team name 2014', awayTeam2014);
 
 //(c) Home Team goals for 2014 world cup final
+const goalsHomeTeam2014 = fifaData.filter(game => game.Year === 2014 && game.Stage === 'Final')[0]['Home Team Goals'];
+console.log('Task 1 : Home Team goals 2014', goalsHomeTeam2014);
 
 //(d) Away Team goals for 2014 world cup final
+const goalsAwayTeam2014 = fifaData.filter(game => game.Year === 2014 && game.Stage === 'Final')[0]['Away Team Goals'];
+console.log('Task 1 : Away Team goals 2014', goalsAwayTeam2014);
+
 
 //(e) Winner of 2014 world cup final */
+const winner2014 = fifaData.filter(game => game.Year === 2014 && game.Stage === 'Final')[0]['Win conditions'];
+console.log('Task 1 : winner 2014', winner2014);
+
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -24,10 +36,10 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(fifaData) {
+  return fifaData.filter(game => game.Stage === 'Final');  
 }
-
+console.log('Task 2', getFinals(fifaData));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -36,9 +48,10 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(fifaData, cb) {
+    return cb(fifaData).map(game => game.Year)
 }
+console.log('Task 3', getYears(fifaData, getFinals));
 
 
 
