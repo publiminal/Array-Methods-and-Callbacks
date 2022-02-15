@@ -48,8 +48,8 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(fifaData, cb) {
-    return cb(fifaData).map(game => game.Year)
+function getYears(arrGames, cb) {
+    return cb(arrGames).map(game => game.Year)
 }
 console.log('Task 3', getYears(fifaData, getFinals));
 
@@ -62,10 +62,14 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(arr, cbGetFinals) {
+        const finals = cbGetFinals(arr);
+        const winners = finals.map(game => {          
+            return game['Home Team Goals'] > game['Away Team Goals'] ? game['Home Team Name'] : game['Away Team Name']
+        });
+        return winners
 }
-
+console.log('Task 4 ', getWinners(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -79,10 +83,14 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(arr, getFinals, getYears, getWinners) {
+    const winners = getWinners(arr, getFinals);
+    const byYear = getFinals(arr).map((game, index, arr) => {
+       return `In ${game.Year}, ${winners[index]} won the world cup!`    
+    })
+    return byYear
 }
-
+console.log('Task 5 ', getWinnersByYear(fifaData, getFinals, getYears, getWinners));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -95,7 +103,7 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(getFinals, arr) {
    /* code here */
 }
 
