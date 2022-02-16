@@ -103,9 +103,13 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(getFinals, arr) {
-   /* code here */
+// const totalWeight = animals.reduce((total, current) => [total =+ current.weight]);
+function getAverageGoals(finalGames) {
+    const totalGoals =  finalGames.reduce((total, game) => total += (game['Away Team Goals'] + game['Home Team Goals']),0 )
+    console.log(`totalGoals`, totalGoals);
+    return (totalGoals / finalGames.length).toFixed(2);
 }
+console.log(getAverageGoals(getFinals(fifaData)))
 
 
 
